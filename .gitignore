@@ -216,3 +216,7 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+.venv/
+.tmp.driveupload/
+.tmp.drivedownload/
+NLP_Group_20_ROT-NLP-Solutions_/
