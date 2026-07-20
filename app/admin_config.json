@@ -47,7 +47,7 @@
         "logistic": {
             "owner": "member1",
             "enabled": true,
-            "display_name": "Logistic Regression",
+            "display_name": "Member 1 ML Model (Logistic Regression)",
             "type": "Machine Learning",
             "accuracy": "89.33%",
             "note": "TF-IDF baseline"
@@ -55,7 +55,7 @@
         "lstm": {
             "owner": "member1",
             "enabled": true,
-            "display_name": "LSTM Deep Learning Model",
+            "display_name": "Member 1 DL Model (LSTM)",
             "type": "Deep Learning",
             "accuracy": "85.17%",
             "note": "Tokenizer + Padding"
@@ -79,7 +79,7 @@
         "member2_svm": {
             "owner": "member2",
             "enabled": true,
-            "display_name": "Member 2 SVM Model",
+            "display_name": "Member 2 ML Model (SVM)",
             "type": "Machine Learning",
             "accuracy": "88.67%",
             "note": "TF-IDF + Support Vector Machine classifier"
@@ -87,7 +87,7 @@
         "member2_cnn": {
             "owner": "member2",
             "enabled": true,
-            "display_name": "Member 2 CNN Model",
+            "display_name": "Member 2 DL Model (CNN)",
             "type": "Deep Learning",
             "accuracy": "86.40%",
             "note": "Tokenizer + Embedding + CNN text classifier"
@@ -95,7 +95,7 @@
         "member3_tree": {
             "owner": "member3",
             "enabled": true,
-            "display_name": "Member 3 XGBoost Model",
+            "display_name": "Member 3 ML Model (XGBoost)",
             "type": "Machine Learning",
             "accuracy": "86.90%",
             "note": "TF-IDF + XGBoost Classifier"
@@ -103,7 +103,7 @@
         "member3_transformer": {
             "owner": "member3",
             "enabled": true,
-            "display_name": "Member 3 DistilBERT Model",
+            "display_name": "Member 3 DL Model (DistilBERT)",
             "type": "Transformer",
             "accuracy": "86.67%",
             "note": "DistilBERT Sequence Classifier"
