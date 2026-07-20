@@ -3082,6 +3082,8 @@ if page == "Identity":
             </div>
             """)
         else:
+            if result["confidence"] < 35.0:
+                st.warning("⚠️ Low confidence warning: The input text does not resemble a valid academic paper abstract. The classification result might be unreliable.")
             r1, r2 = st.columns(2)
 
             with r1:
