@@ -99,6 +99,24 @@ if "page" in st.query_params and st.query_params["page"] == "admin":
         display: none;
     }
     
+    .main .block-container,
+    .block-container {
+        max-width: 1400px !important;
+        width: 100% !important;
+        padding: 1.5rem 2rem !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        position: relative;
+        overflow-x: hidden !important;
+    }
+
+    @media (max-width: 768px) {
+        .main .block-container,
+        .block-container {
+            padding: 1rem 0.5rem !important;
+        }
+    }
+    
     /* Input styling for admin */
     [data-testid="stTextInput"] input,
     [data-testid="stTextArea"] textarea,
@@ -350,13 +368,21 @@ section[data-testid="stSidebar"] {
 
 .main .block-container,
 .block-container {
-    max-width: 1760px !important;
-    width: calc(100% - 12px) !important;
-    padding: 0.45rem 0 1.1rem 0 !important;
+    max-width: 1560px !important;
+    width: 100% !important;
+    padding: 1.5rem 2rem !important;
     margin-left: auto !important;
     margin-right: auto !important;
     position: relative;
     z-index: 2;
+    overflow-x: hidden !important;
+}
+
+@media (max-width: 768px) {
+    .main .block-container,
+    .block-container {
+        padding: 1rem 0.5rem !important;
+    }
 }
 
 p, li, label, span {
