@@ -224,3 +224,14 @@ NLP_Group_20_ROT-NLP-Solutions_/
 .tmp.driveupload/
 .tmp.drivedownload/
 NLP_Group_20_ROT-NLP-Solutions_/
+
+data/processed/arxiv_60000_balanced.json
+data/processed/arxiv_60000_balanced.csv
+data/processed/arxiv_107892_balanced.csv
+models/member1_advanced_ensemble_60000.pkl
+models/member1_advanced_ensemble_v2.pkl
+models/member1_advanced_ensemble.pkl
+notebooks/member1_high_accuracy_test.ipynb
+models/member1_advanced_ensemble_107k.pkl
+models/member1_advanced_ensemble_v3.pkl
+models/member1_advanced_ensemble_v4.pkl
