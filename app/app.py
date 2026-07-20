@@ -2232,7 +2232,7 @@ def predict_with_lstm(title, abstract, models):
     sequence = tokenizer.texts_to_sequences([cleaned_text])
     padded_sequence = pad_sequences(sequence, maxlen=300, padding="post", truncating="post")
 
-    probabilities = lstm_model.predict(padded_sequence, verbose=0)[0]
+    probabilities = lstm_model(padded_sequence, training=False).numpy()[0]
 
     predicted_label = int(np.argmax(probabilities))
     predicted_category = label_encoder.inverse_transform([predicted_label])[0]
@@ -2395,7 +2395,7 @@ def predict_with_member2_cnn(title, abstract, models):
     sequence = tokenizer.texts_to_sequences([cleaned_text])
     padded_sequence = pad_sequences(sequence, maxlen=300, padding="post", truncating="post")
 
-    probabilities = cnn_model.predict(padded_sequence, verbose=0)[0]
+    probabilities = cnn_model(padded_sequence, training=False).numpy()[0]
     probabilities = np.array(probabilities)
 
     if probabilities.ndim == 0:
@@ -3042,8 +3042,15 @@ if page == "Identity":
             st.button("Load Demo", key="demo_home_real", on_click=load_demo_home)
 
         if predict_clicked:
-            if not st.session_state["home_abstract"].strip():
+            abstract_text = st.session_state["home_abstract"].strip()
+            words = abstract_text.split()
+            
+            if not abstract_text:
                 st.warning("Please enter a research paper abstract.")
+            elif len(abstract_text) < 45:
+                st.error("⚠️ Input text is too short. Please provide a realistic academic abstract (at least 45 characters) or click 'Load Demo'.")
+            elif any(len(w) > 25 for w in words):
+                st.error("⚠️ Unreadable/Nonsense input detected (words are too long). Please provide a valid scientific abstract.")
             else:
                 selected_model_key = get_safe_model_key_from_option(selected_model, admin_config)
 
@@ -3054,7 +3061,7 @@ if page == "Identity":
                     st.session_state["home_abstract"],
                     models,
                     admin_config,
-                )
+                    )
                 result["inference_time"] = round(time.time() - start_time, 4)
                 st.session_state["latest_result"] = result
                 st.success("Prediction completed successfully.")
