@@ -512,6 +512,7 @@ h1, h2, h3, h4 {
     border-radius: 50%;
     background: #22c55e;
     box-shadow: 0 0 15px rgba(34,197,94,0.9);
+    animation: pulseGreen 2s ease-in-out infinite;
 }
 
 /* ================= MENU BAR ================= */
@@ -707,13 +708,16 @@ div[role="radiogroup"] p {
 }
 
 .game-title {
-    color: #ffffff;
     font-family: 'Space Grotesk', sans-serif;
     font-size: clamp(32px, 2.55vw, 39px);
     font-weight: 800;
     letter-spacing: -1.6px;
     line-height: 1.02;
     max-width: 470px;
+    background: linear-gradient(135deg, #ffffff 0%, #d9ff00 50%, #22d3ee 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .game-cta {
@@ -727,6 +731,11 @@ div[role="radiogroup"] p {
     text-decoration: none !important;
     border-bottom: 3px solid #d9ff00;
     padding-bottom: 7px;
+    background: linear-gradient(90deg, #d9ff00, #fff8b3, #d9ff00);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 3s linear infinite;
 }
 
 .game-scroll-note {
@@ -1058,12 +1067,27 @@ div[role="radiogroup"] p {
     border: 1px solid rgba(217,255,0,0.13);
     border-radius: 24px;
     box-shadow: 0 22px 52px rgba(0,0,0,0.52);
-    transition: 0.22s ease;
+    transition: all 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.metric-card:hover,
+.result-card:hover,
+.info-card:hover,
+.progress-card:hover {
+    transform: translateY(-6px) scale(1.015);
+    border-color: rgba(217,255,0,0.30);
+    box-shadow: 0 32px 68px rgba(0,0,0,0.65), 0 0 30px rgba(217,255,0,0.08);
 }
 
 .metric-card {
     padding: 17px;
+    animation: fadeInUp 0.6s ease both;
 }
+
+.metric-strip > div:nth-child(1) .metric-card { animation-delay: 0s; }
+.metric-strip > div:nth-child(2) .metric-card { animation-delay: 0.1s; }
+.metric-strip > div:nth-child(3) .metric-card { animation-delay: 0.2s; }
+.metric-strip > div:nth-child(4) .metric-card { animation-delay: 0.3s; }
 
 .metric-label {
     color: #737373;
@@ -1437,10 +1461,13 @@ div[role="radiogroup"] p {
 
 /* ================= STREAMLIT WIDGETS ================= */
 [data-testid="stForm"] {
-    background: rgba(0,0,0,0.18) !important;
-    border: 1px solid rgba(217,255,0,0.12) !important;
+    background: rgba(8,8,8,0.65) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(217,255,0,0.14) !important;
     border-radius: 22px !important;
-    padding: 18px !important;
+    padding: 22px !important;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.04) !important;
 }
 
 [data-testid="stTextInput"] input,
@@ -1518,6 +1545,20 @@ div[data-testid="stFormSubmitButton"] button {
     transition: all 0.22s ease !important;
 }
 
+div.stButton > button:first-child:hover,
+div[data-testid="stFormSubmitButton"] button:hover {
+    transform: translateY(-3px) scale(1.04);
+    box-shadow:
+        0 14px 30px rgba(0,0,0,0.45),
+        0 0 0 1px rgba(255,255,255,0.12),
+        0 0 28px rgba(217,255,0,0.18) !important;
+}
+
+div.stButton > button:first-child:active,
+div[data-testid="stFormSubmitButton"] button:active {
+    transform: translateY(0) scale(0.98);
+}
+
 div.stButton > button:first-child *,
 div[data-testid="stFormSubmitButton"] button * {
     color: #050505 !important;
@@ -1568,6 +1609,21 @@ div[data-testid="stMetric"] * {
 
 @keyframes loadBar {
     from { width: 0; }
+}
+
+@keyframes pulseGreen {
+    0%, 100% { box-shadow: 0 0 15px rgba(34,197,94,0.9); transform: scale(1); }
+    50% { box-shadow: 0 0 25px rgba(34,197,94,1), 0 0 40px rgba(34,197,94,0.5); transform: scale(1.3); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
 }
 
 @media (max-width: 1100px) {
