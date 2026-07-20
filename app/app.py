@@ -3195,8 +3195,15 @@ elif page == "Prediction":
         )
 
         if predict_button:
-            if not st.session_state["pred_abstract"].strip():
+            abstract_text = st.session_state["pred_abstract"].strip()
+            words = abstract_text.split()
+            
+            if not abstract_text:
                 st.warning("Please enter an abstract.")
+            elif len(abstract_text) < 45:
+                st.error("⚠️ Input text is too short. Please provide a realistic academic abstract (at least 45 characters) or click 'Load Demo'.")
+            elif any(len(w) > 25 for w in words):
+                st.error("⚠️ Unreadable/Nonsense input detected (words are too long). Please provide a valid scientific abstract.")
             else:
                 selected_model_key = get_safe_model_key_from_option(selected_model, admin_config)
 
@@ -3213,6 +3220,9 @@ elif page == "Prediction":
                 )
                 result["inference_time"] = round(time.time() - start_time, 4)
                 st.session_state["latest_result"] = result
+
+                if result["confidence"] < 35.0:
+                    st.warning("⚠️ Low confidence warning: The input text does not resemble a valid academic paper abstract. The classification result might be unreliable.")
 
                 c1, c2 = st.columns(2)
                 c1.metric("Predicted Category", result["predicted_category"])
