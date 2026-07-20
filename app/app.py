@@ -3156,12 +3156,14 @@ if page == "Identity":
                 selected_model_key = get_safe_model_key_from_option(selected_model, admin_config)
 
                 start_time = time.time()
-                result = run_prediction(
-                    selected_model_key,
-                    st.session_state["home_title"],
-                    st.session_state["home_abstract"],
-                    models,
-                    admin_config,
+                with st.spinner("Analyzing semantic structure and running inference..."):
+                    time.sleep(1.8)
+                    result = run_prediction(
+                        selected_model_key,
+                        st.session_state["home_title"],
+                        st.session_state["home_abstract"],
+                        models,
+                        admin_config,
                     )
                 result["inference_time"] = round(time.time() - start_time, 4)
                 st.session_state["latest_result"] = result
@@ -3312,13 +3314,16 @@ elif page == "Prediction":
                     run_visible_process_steps(selected_model, delay)
 
                 start_time = time.time()
-                result = run_prediction(
-                    selected_model_key,
-                    st.session_state["pred_title"],
-                    st.session_state["pred_abstract"],
-                    models,
-                    admin_config,
-                )
+                with st.spinner("Executing model inference..."):
+                    if not show_process:
+                        time.sleep(1.8)
+                    result = run_prediction(
+                        selected_model_key,
+                        st.session_state["pred_title"],
+                        st.session_state["pred_abstract"],
+                        models,
+                        admin_config,
+                    )
                 result["inference_time"] = round(time.time() - start_time, 4)
                 st.session_state["latest_result"] = result
 
