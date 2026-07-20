@@ -3465,3 +3465,14 @@ elif page == "About":
 
     completed_df = pd.DataFrame({"Completed Work": completed_items})
     render_dark_table(completed_df, max_rows=20)
+
+
+# =====================================================
+# FOOTER & ADMIN ROUTING
+# =====================================================
+st.markdown("<br><hr style='border-color: rgba(217,255,0,0.15);'>", unsafe_allow_html=True)
+col_f1, col_f2 = st.columns([0.75, 0.25])
+with col_f1:
+    st.caption("© 2026 ResearchScope AI · Natural Language Processing Group 20. All rights reserved.")
+with col_f2:
+    st.page_link("pages/admin.py", label="Admin Portal", icon="⚙️")
