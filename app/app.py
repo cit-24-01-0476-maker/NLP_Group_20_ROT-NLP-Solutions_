@@ -101,9 +101,9 @@ if "page" in st.query_params and st.query_params["page"] == "admin":
     
     .main .block-container,
     .block-container {
-        max-width: 1400px !important;
+        max-width: 96% !important;
         width: 100% !important;
-        padding: 1.5rem 2rem !important;
+        padding: 1.5rem 1rem !important;
         margin-left: auto !important;
         margin-right: auto !important;
         position: relative;
@@ -368,9 +368,9 @@ section[data-testid="stSidebar"] {
 
 .main .block-container,
 .block-container {
-    max-width: 1560px !important;
+    max-width: 96% !important;
     width: 100% !important;
-    padding: 1.5rem 2rem !important;
+    padding: 1.5rem 1rem !important;
     margin-left: auto !important;
     margin-right: auto !important;
     position: relative;
