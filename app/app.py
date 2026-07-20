@@ -3476,21 +3476,11 @@ with col_f1:
     st.caption("© 2026 ResearchScope AI · Natural Language Processing Group 20. All rights reserved.")
 with col_f2:
     try:
-        st.page_link("app/pages/admin.py", label="Admin Portal", icon="⚙️")
+        # Streamlit cloud often evaluates paths relative to the main script
+        st.page_link("pages/admin.py", label="Admin Portal", icon="⚙️")
     except Exception:
-        st.markdown("""
-        <div style="text-align: right;">
-            <a href="/admin" target="_self" style="
-                display: inline-block;
-                padding: 6px 14px;
-                background: rgba(217, 255, 0, 0.08);
-                color: #d9ff00;
-                border: 1px solid rgba(217, 255, 0, 0.25);
-                border-radius: 20px;
-                text-decoration: none;
-                font-size: 0.82rem;
-                font-weight: 600;
-                transition: all 0.3s;
-            ">⚙️ Admin Portal</a>
-        </div>
-        """, unsafe_allow_html=True)
+        try:
+            # Localhost from root directory evaluates from root
+            st.page_link("app/pages/admin.py", label="Admin Portal", icon="⚙️")
+        except Exception as e:
+            st.error(f"Navigation error: Could not locate admin page. Please use the sidebar. Error: {e}")
