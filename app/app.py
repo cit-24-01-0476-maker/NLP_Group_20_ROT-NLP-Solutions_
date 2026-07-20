@@ -72,6 +72,81 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
+if "page" in st.query_params and st.query_params["page"] == "admin":
+    st.markdown(
+        """
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700;800&display=swap');
+
+    * {
+        font-family: 'Inter', sans-serif;
+        box-sizing: border-box;
+    }
+    
+    .stApp {
+        background:
+            radial-gradient(circle at 15% 15%, rgba(217,255,0,0.08), transparent 28%),
+            radial-gradient(circle at 85% 20%, rgba(34,211,238,0.07), transparent 25%),
+            linear-gradient(135deg, #030303 0%, #080808 48%, #000000 100%);
+        color: #f8fafc;
+    }
+
+    header[data-testid="stHeader"] {
+        background: transparent;
+    }
+
+    section[data-testid="stSidebar"] {
+        display: none;
+    }
+    
+    /* Input styling for admin */
+    [data-testid="stTextInput"] input,
+    [data-testid="stTextArea"] textarea,
+    input, textarea {
+        background-color: #101010 !important;
+        color: #f8fafc !important;
+        -webkit-text-fill-color: #f8fafc !important;
+        border-radius: 14px !important;
+        border: 1px solid rgba(217,255,0,0.22) !important;
+    }
+    
+    /* Button styling */
+    div.stButton > button:first-child,
+    div[data-testid="stFormSubmitButton"] button {
+        min-height: 45px !important;
+        border-radius: 999px !important;
+        background: linear-gradient(135deg, #faffd7 0%, #ffffff 48%, #d9ff00 100%) !important;
+        color: #050505 !important;
+        -webkit-text-fill-color: #050505 !important;
+        border: 1px solid rgba(217,255,0,0.50) !important;
+        font-weight: 850 !important;
+        text-transform: uppercase !important;
+    }
+    
+    /* Toggle switch overrides */
+    div[data-testid="stCheckbox"] label span {
+        color: #f8fafc !important;
+    }
+    </style>
+    """,
+        unsafe_allow_html=True,
+    )
+    
+    st.markdown("<br><br>", unsafe_allow_html=True)
+    col1, col2 = st.columns([0.8, 0.2])
+    with col1:
+        st.title("⚙️ ResearchScope AI Admin")
+        st.caption("Direct admin route. Main website menu එකේ Admin Panel එක පේන්නේ නෑ.")
+    with col2:
+        if st.button("⬅️ Back to Main App", use_container_width=True):
+            st.query_params.clear()
+            st.rerun()
+
+    config = load_admin_config()
+    from admin_panel import render_admin_panel
+    render_admin_panel(config)
+    st.stop()
+
 
 # =====================================================
 # BASIC HELPERS
@@ -3475,12 +3550,6 @@ col_f1, col_f2 = st.columns([0.75, 0.25])
 with col_f1:
     st.caption("© 2026 ResearchScope AI · Natural Language Processing Group 20. All rights reserved.")
 with col_f2:
-    try:
-        # Streamlit cloud often evaluates paths relative to the main script
-        st.page_link("pages/admin.py", label="Admin Portal", icon="⚙️")
-    except Exception:
-        try:
-            # Localhost from root directory evaluates from root
-            st.page_link("app/pages/admin.py", label="Admin Portal", icon="⚙️")
-        except Exception as e:
-            st.error(f"Navigation error: Could not locate admin page. Please use the sidebar. Error: {e}")
+    if st.button("⚙️ Admin Portal", use_container_width=True):
+        st.query_params["page"] = "admin"
+        st.rerun()
