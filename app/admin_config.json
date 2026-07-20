@@ -57,7 +57,7 @@
             "enabled": true,
             "display_name": "Member 1 DL Model (LSTM)",
             "type": "Deep Learning",
-            "accuracy": "85.17%",
+            "accuracy": "85.33%",
             "note": "Tokenizer + Padding"
         },
         "ensemble_v3": {
