@@ -1,0 +1,141 @@
+{
+    "users": {
+        "member1": {
+            "password": "member1",
+            "role": "member1",
+            "name": "Oshadha",
+            "access": "full"
+        },
+        "member2": {
+            "password": "member2",
+            "role": "member2",
+            "name": "Thiranji",
+            "access": "models_only"
+        },
+        "member3": {
+            "password": "member3",
+            "role": "member3",
+            "name": "Ravindu",
+            "access": "models_only"
+        }
+    },
+    "site": {
+        "group_label": "+ NLP PROJECT · GROUP 20",
+        "small_brand": "ResearchScope",
+        "small_subtitle": "AI Classifier",
+        "hero_kicker": "NLP Classification for Research Papers",
+        "hero_title": "AI-Powered Paper Classification. Flawless Prediction.",
+        "hero_cta": "Start Predicting Smarter ↗",
+        "right_title": "🌐 NLP-Powered Research Classification",
+        "right_text": "Titles, abstracts, TF-IDF, LSTM and ensemble models for accurate category prediction.",
+        "tab_1": "Text Preprocessing",
+        "tab_2": "Feature Extraction",
+        "tab_3": "Model Prediction",
+        "tab_4": "Explainable Output"
+    },
+    "metrics": {
+        "dataset_value": "15K",
+        "dataset_note": "Balanced arXiv records",
+        "classes_value": "6",
+        "classes_note": "Subject categories",
+        "stable_value": "90.80%",
+        "stable_note": "Advanced Ensemble V3",
+        "highest_value": "91.07%",
+        "highest_note": "Advanced Ensemble V4"
+    },
+    "models": {
+        "logistic": {
+            "owner": "member1",
+            "enabled": true,
+            "display_name": "Logistic Regression",
+            "type": "Machine Learning",
+            "accuracy": "89.33%",
+            "note": "TF-IDF baseline"
+        },
+        "lstm": {
+            "owner": "member1",
+            "enabled": true,
+            "display_name": "LSTM Deep Learning Model",
+            "type": "Deep Learning",
+            "accuracy": "85.17%",
+            "note": "Tokenizer + Padding"
+        },
+        "ensemble_v3": {
+            "owner": "member1",
+            "enabled": true,
+            "display_name": "Advanced Ensemble V3",
+            "type": "ML Ensemble",
+            "accuracy": "90.80%",
+            "note": "Safe recommended model"
+        },
+        "ensemble_v4": {
+            "owner": "member1",
+            "enabled": true,
+            "display_name": "Advanced Ensemble V4",
+            "type": "ML Ensemble",
+            "accuracy": "91.07%",
+            "note": "Highest experimental model"
+        },
+        "member2_svm": {
+            "owner": "member2",
+            "enabled": true,
+            "display_name": "Member 2 SVM Model",
+            "type": "Machine Learning",
+            "accuracy": "88.67%",
+            "note": "TF-IDF + Support Vector Machine classifier"
+        },
+        "member2_cnn": {
+            "owner": "member2",
+            "enabled": true,
+            "display_name": "Member 2 CNN Model",
+            "type": "Deep Learning",
+            "accuracy": "86.40%",
+            "note": "Tokenizer + Embedding + CNN text classifier"
+        },
+        "member3_tree": {
+            "owner": "member3",
+            "enabled": true,
+            "display_name": "Member 3 XGBoost Model",
+            "type": "Machine Learning",
+            "accuracy": "86.90%",
+            "note": "TF-IDF + XGBoost Classifier"
+        },
+        "member3_transformer": {
+            "owner": "member3",
+            "enabled": true,
+            "display_name": "Member 3 DistilBERT Model",
+            "type": "Transformer",
+            "accuracy": "86.67%",
+            "note": "DistilBERT Sequence Classifier"
+        }
+    },
+    "members": [
+        {
+            "tag": "Member 1",
+            "role_key": "member1",
+            "name": "Oshadha",
+            "role": "Preprocessing, Logistic Regression, LSTM, Advanced Ensemble and Streamlit Web App",
+            "progress": 100,
+            "status": "Completed",
+            "items": "TF-IDF · Logistic Regression · LSTM · Ensemble V3/V4 · Web UI · Admin Panel"
+        },
+        {
+            "tag": "Member 2",
+            "role_key": "member2",
+            "name": "Thiranji",
+            "role": "SVM and CNN model development, model evaluation and branch integration",
+            "progress": 100,
+            "status": "Completed",
+            "items": "SVM · CNN · Accuracy Evaluation · Model Export · Git Branch Integration"
+        },
+        {
+            "tag": "Member 3",
+            "role_key": "member3",
+            "name": "Ravindu",
+            "role": "Tree-based ML / Transformer model branch and final comparison support",
+            "progress": 100,
+            "status": "Completed",
+            "items": "Random Forest/XGBoost · BERT/DistilBERT · Evaluation"
+        }
+    ]
+}
