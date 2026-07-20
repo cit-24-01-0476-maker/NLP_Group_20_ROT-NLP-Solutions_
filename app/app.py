@@ -3476,7 +3476,7 @@ with col_f1:
     st.caption("© 2026 ResearchScope AI · Natural Language Processing Group 20. All rights reserved.")
 with col_f2:
     try:
-        st.page_link("pages/admin.py", label="Admin Portal", icon="⚙️")
+        st.page_link("app/pages/admin.py", label="Admin Portal", icon="⚙️")
     except Exception:
         st.markdown("""
         <div style="text-align: right;">
