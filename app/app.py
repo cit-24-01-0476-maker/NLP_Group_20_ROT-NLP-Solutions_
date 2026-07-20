@@ -2230,7 +2230,7 @@ def predict_with_lstm(title, abstract, models):
     cleaned_text = clean_text(combined_text)
 
     sequence = tokenizer.texts_to_sequences([cleaned_text])
-    padded_sequence = pad_sequences(sequence, maxlen=300, padding="post", truncating="post")
+    padded_sequence = pad_sequences(sequence, maxlen=250, padding="post", truncating="post")
 
     probabilities = lstm_model(padded_sequence, training=False).numpy()[0]
 
