@@ -235,3 +235,15 @@ notebooks/member1_high_accuracy_test.ipynb
 models/member1_advanced_ensemble_107k.pkl
 models/member1_advanced_ensemble_v3.pkl
 models/member1_advanced_ensemble_v4.pkl
+
+desktop.ini
+**/desktop.ini
+agents/
+app/assets/
+screenshots/member2/
+.venv/
+.tmp.driveupload/
+.tmp.drivedownload/
+__pycache__/
+.ipynb_checkpoints/
+*.pyc
