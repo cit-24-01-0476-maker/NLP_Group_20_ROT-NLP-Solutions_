@@ -247,3 +247,4 @@ screenshots/member2/
 __pycache__/
 .ipynb_checkpoints/
 *.pyc
+notebooks/*_BACKUP.ipynb
