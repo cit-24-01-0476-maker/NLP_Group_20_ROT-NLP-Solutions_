@@ -1,49 +1,88 @@
-# ResearchScope AI: Academic Research Paper Subject Category Classifier
+# ResearchScope AI: Predicting Research Paper Subject Categories Using NLP
 
-An NLP-powered scientific research paper topic classification system built for **CCS3356 - Natural Language Processing (NLP)**.
-
----
-
-## 👥 Group Members (Group 20)
-
-| Member | Responsibility & Contribution | Progress |
-| :--- | :--- | :---: |
-| **Member 1 (Oshadha)** | Core web application design, text preprocessing modularization, TF-IDF Baseline, Logistic Regression, LSTM Deep Learning model, and Ensemble Experiments (V3/V4). | 100% |
-| **Member 2 (Thiranji)** | Support Vector Machine (SVM) classifier, 1D Convolutional Neural Network (CNN) text model, validation metrics evaluation, and integration. | 100% |
-| **Member 3 (Ravindu)** | XGBoost classifier (with TF-IDF), DistilBERT Sequence classification transformer pipeline, and evaluation reporting. | 100% |
+A Natural Language Processing (NLP) text classification project developed for academic evaluation by **Group 20 (ROT NLP Solutions)**.
 
 ---
 
-## 📝 Problem Statement
+## 👥 Group Members & Work Allocation
 
-In academic research databases (such as arXiv), thousands of papers are uploaded daily. Manually sorting these documents into appropriate fields is time-consuming and error-prone. This project delivers an automated, transparent, and explainable NLP pipeline to classify scientific research papers into one of six core subject categories based on their **Title** and **Abstract**:
-1. **Computer Science (CS)**
-2. **Mathematics (Math)**
-3. **Physics (Phys)**
-4. **Statistics (Stat)**
-5. **Quantitative Biology (Q-Bio)**
-6. **Quantitative Finance (Q-Fin)**
+| Student Name | Student ID | Designated Models & Responsibilities | Branch |
+| :--- | :--- | :--- | :--- |
+| **Member 1 (Oshadha)** | CIT-24-01-0476 | Preprocessing Pipeline, Logistic Regression (ML), LSTM (DL) | `feature/member1-preprocessing-logistic-lstm` |
+| **Member 2 (Thiranji)** | CIT-24-01-0266 | EDA, Support Vector Machine (ML), 1D CNN (DL) | `feature/member2-eda-svm-cnn` |
+| **Member 3 (Ravindu)** | CIT-24-01-0447 | XGBoost (ML), DistilBERT (DL), Streamlit Web App Integration | `feature/member3-xgboost-bert-app` |
 
 ---
 
-## 📊 Dataset Information
+## 📌 Project Overview & Problem Statement
 
-* **Filename**: `arxiv_15000_balanced.csv`
-* **Size**: 15,000 records
-* **Distribution**: Perfectly balanced dataset with 2,500 samples per class.
-* **Train/Test Split**: 82% training (12,000 records), 18% testing (3,000 records).
-* **Data Sources**: arXiv Public Dataset.
+Academic research databases process thousands of paper submissions daily. Manually categorizing papers into domain-specific subjects based on abstracts is time-consuming. **ResearchScope AI** automates this classification pipeline by predicting the subject domain of a paper given its **Title** and **Abstract**.
+
+### Target Subject Categories:
+1. **Computer Science**
+2. **Mathematics**
+3. **Physics**
+4. **Statistics**
+5. **Quantitative Biology**
+6. **Quantitative Finance**
 
 ---
 
-## ⚙️ Setup Instructions
+## 📊 Dataset Details
 
-To set up and run this application locally, ensure you have Python (version 3.10+) installed.
+- **Source**: arXiv Research Paper Dataset (Cornell University / Kaggle)
+- **Dataset File**: `data/processed/arxiv_15000_balanced.csv`
+- **Volume**: 15,000 balanced records (2,500 samples per class)
+- **Primary Fields**: `title`, `abstract`, `main_category`
+
+---
+
+## 🤖 Model Comparison & Evaluation Summary
+
+| Member | Model Name | Model Type | Feature Representation | Test Accuracy |
+| :--- | :--- | :--- | :--- | :---: |
+| **Member 1** | **Logistic Regression** | Machine Learning | TF-IDF Vectorizer (ngram 1-2) | **89.33%** |
+| **Member 2** | **Support Vector Machine (SVM)** | Machine Learning | TF-IDF Vectorizer | **88.67%** |
+| **Member 3** | **XGBoost Classifier** | Machine Learning | TF-IDF Vectorizer | **86.90%** |
+| **Member 3** | **DistilBERT Transformer** | Deep Learning / Transformer | HuggingFace Pretrained Tokenizer | **86.67%** |
+| **Member 2** | **1D CNN** | Deep Learning | Tokenizer + Embedding Layer | **86.40%** |
+| **Member 1** | **LSTM Neural Network** | Deep Learning | Tokenizer + Sequence Padding | **85.17%** |
+
+---
+
+## 📁 Repository Structure
+
+```
+NLP_Group_20_ROT-NLP-Solutions_/
+├── app/
+│   ├── app.py                      # Main Streamlit Web Application
+│   └── admin_panel.py              # Application Admin Panel
+├── data/
+│   └── processed/
+│       └── arxiv_15000_balanced.csv # Cleaned balanced dataset (15k records)
+├── models/                         # Trained model artifacts (.pkl, .h5, distilbert)
+├── notebooks/
+│   ├── member1_logistic_lstm.ipynb
+│   ├── member2_svm_cnn.ipynb
+│   └── member3_xgboost_bert.ipynb
+├── src/
+│   └── preprocessing.py            # Modularized text cleaning pipeline
+├── screenshots/                    # Verification screenshots for project stages
+├── reports/                        # Project submission reports & PDF documentation
+├── MEMBER1_README.md
+├── requirements.txt
+├── README.md
+└── .gitignore
+```
+
+---
+
+## 🚀 How to Run the Project Locally
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/NLP_Group_20.git
-   cd NLP_Group_20
+   git clone https://github.com/cit-24-01-0476-maker/NLP_Group_20_ROT-NLP-Solutions_.git
+   cd NLP_Group_20_ROT-NLP-Solutions_
    ```
 
 2. **Set up virtual environment**:
@@ -52,52 +91,13 @@ To set up and run this application locally, ensure you have Python (version 3.10
    .venv\Scripts\activate
    ```
 
-3. **Install dependencies**:
+3. **Install required dependencies**:
    ```bash
    pip install -r requirements.txt
    ```
 
----
-
-## 🚀 How to Run the Project
-
-Launch the Streamlit web application using:
-```bash
-.venv\Scripts\python -m streamlit run app/app.py
-```
-Open [http://localhost:8501](http://localhost:8501) in your browser.
-
----
-
-## 🤖 Model Summary
-
-Our architecture strictly complies with the requirement that no two members use the same models:
-
-### Member 1:
-* **Logistic Regression (ML)**: Uses TF-IDF features. Baseline classifier.
-* **LSTM (DL)**: Standard tokenized word index sequence representation with Keras LSTM layers.
-
-### Member 2:
-* **SVM (ML)**: Support Vector Machine with TF-IDF features.
-* **CNN (DL)**: 1D CNN for text sequences using word embeddings.
-
-### Member 3:
-* **XGBoost (ML)**: Extreme Gradient Boosting tree-based classifier with TF-IDF.
-* **DistilBERT (DL / Transformer)**: Fine-tuned DistilBERT transformer sequence classifier.
-
----
-
-## 📈 Results Summary
-
-The performance of each member's models evaluated on the test split:
-
-| Model | Owner | Type | Feature Extraction | Accuracy |
-| :--- | :--- | :--- | :--- | :---: |
-| **Advanced Ensemble V4** | Member 1 | Ensemble ML | Title-Weighted TF-IDF Soft Voting | **91.07%** |
-| **Advanced Ensemble V3** | Member 1 | Ensemble ML | Stable Soft Voting TF-IDF Ensemble | **90.80%** |
-| **Logistic Regression** | Member 1 | Machine Learning | TF-IDF Vectorizer (ngram 1,2) | **89.33%** |
-| **SVM Model** | Member 2 | Machine Learning | TF-IDF Vectorizer | **88.67%** |
-| **XGBoost Model** | Member 3 | Machine Learning | TF-IDF Vectorizer (ngram 1,2) | **86.90%** |
-| **DistilBERT Model** | Member 3 | Transformer | HuggingFace Pretrained Tokenizer | **86.67%** |
-| **CNN Model** | Member 2 | Deep Learning | Tokenizer + Embedding | **86.40%** |
-| **LSTM Model** | Member 1 | Deep Learning | Tokenizer + Padding Sequence | **85.17%** |
+4. **Launch the Streamlit Web Application**:
+   ```bash
+   streamlit run app/app.py
+   ```
+   Open `http://localhost:8501` in your browser.
