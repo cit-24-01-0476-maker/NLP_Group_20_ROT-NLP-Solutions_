@@ -1,85 +1,49 @@
-# Member 2 Documentation: EDA, Linear SVM, and CNN Models
+# Member 2 Documentation: Proposal-Aligned NLP Pipeline (EDA, Linear SVM, CNN)
 
 **Author:** Member 2 (Thiranji - CIT-24-01-0266)  
+**Group:** Group 20 (ROT NLP Solutions)  
 **Branch:** `feature/member2-eda-svm-cnn`  
-**Task Scope:** Exploratory Data Analysis (EDA), Baseline Linear Support Vector Machine (Linear SVM), and Deep Learning Convolutional Neural Network (CNN).
 
 ---
 
-## 1. Project Overview & Assigned Tasks
+## Assigned Tasks (From Project Proposal Section 3 - Member 02)
 
-Member 2 is responsible for:
-1. **Exploratory Data Analysis (EDA)** on the arXiv academic paper abstracts dataset.
-2. **Baseline ML Model**: Linear Support Vector Machine (SVM) utilizing TF-IDF feature extraction (Unigram & Bigram).
-3. **Deep Learning Model**: 1D Convolutional Neural Network (CNN) implemented via TensorFlow / Keras.
-4. **Evaluation & Comparison**: Performance analysis between traditional feature engineering (TF-IDF + SVM) vs deep learning text representation (Embedding + CNN).
-
----
-
-## 2. Dataset Summary
-
-- **Dataset File:** `arxiv_15000_balanced.csv`
-- **Total Records:** 15,000 instances
-- **Target Categories (6 classes):**
-  - Computer Science (`cs`)
-  - Physics (`physics` / `astro-ph`)
-  - Mathematics (`math`)
-  - Statistics (`stat`)
-  - Quantitative Biology (`q-bio`)
-  - Quantitative Finance (`q-fin`)
-- **Train / Test Split:** 80% Training (12,000 samples), 20% Testing (3,000 samples).
+| Proposal Step | Task Name | Description & Implementation Details |
+| :--- | :--- | :--- |
+| **Step 1** | **Dataset Exploration** | Checked dataset size (15,000 records), number of classes (6 classes), class balance (2,500 records per class), and inspected sample abstracts. |
+| **Step 2** | **Handling Missing & Duplicate Data** | Verified no null values in titles or abstracts, dropped missing categories, and ensured data quality. |
+| **Step 3** | **Category Mapping** | Mapped detailed arXiv categories (e.g., `cs.DS`, `astro-ph`, `math.ST`) into 6 main subject categories: *Computer Science, Mathematics, Physics, Statistics, Quantitative Biology, Quantitative Finance*. |
+| **Step 4** | **Exploratory Data Analysis (EDA)** | Generated visualizations for class distribution, abstract length (word count), and top 20 most frequent terms. |
+| **Step 5** | **Text Preprocessing** | Applied text cleaning (removing URLs/HTML tags/special characters), lowercasing, tokenization, and stop-word removal. |
+| **Step 6** | **TF-IDF & Linear SVM Model** | Built `TfidfVectorizer` (unigrams & bigrams, max 30,000 features) and trained `LinearSVC`. **Accuracy: 90.13%**. |
+| **Step 7** | **Sequence Prep, CNN & Keyword Extraction** | Tokenized text (vocab 30,000, max length 300), built Keras 1D CNN (`Embedding -> Conv1D -> GlobalMaxPool -> Dense -> Softmax`). **Accuracy: 87.06%**. Extracted important domain keywords and confusion matrix analysis. |
 
 ---
 
-## 3. Exploratory Data Analysis (EDA) Highlights
+## Member 2 Model Performance Summary
 
-- **Balanced Class Distribution:** Equal representation of ~2,500 samples per class to eliminate class imbalance bias.
-- **Abstract Length Distribution:** Average sequence length of paper abstracts is ~150–250 words.
-- **Top Common Words:** Identified top 20 domain-specific terms across academic paper abstracts post stop-word removal.
-
----
-
-## 4. Model Architectures & Hyperparameters
-
-### 4.1 Linear Support Vector Machine (Linear SVM)
-- **Feature Extractor:** `TfidfVectorizer`
-  - `ngram_range`: `(1, 2)` (Unigrams & Bigrams)
-  - `max_features`: 30,000
-  - `stop_words`: English standard stop words
-- **Classifier:** `LinearSVC(C=1.0, random_state=42)`
-- **Execution Speed:** Fast training (~2.5 seconds)
-
-### 4.2 Convolutional Neural Network (CNN)
-- **Tokenizer / Vocabulary:** Vocabulary size = 30,000 words, OOV Token = `<OOV>`
-- **Sequence Padding:** `max_len` = 300 tokens (`padding='post'`, `truncating='post'`)
-- **Architecture Pipeline:**
-  1. `Embedding` layer (Input dim: 30,000, Output dim: 128, Input length: 300)
-  2. `Conv1D` layer (Filters: 128, Kernel size: 5, Activation: `relu`)
-  3. `GlobalMaxPooling1D` layer
-  4. `Dense` layer (64 units, Activation: `relu`)
-  5. `Dropout` layer (Rate: 0.5)
-  6. `Dense` Output layer (6 units, Activation: `softmax`)
-- **Optimizer & Loss:** Adam optimizer, `sparse_categorical_crossentropy` loss.
-- **Training Setup:** 5 Epochs, batch size 64.
-
----
-
-## 5. Experimental Results & Performance Comparison
-
-| Model | Architecture / Method | Test Accuracy | Strengths |
+| Model | Technique / Architecture | Test Accuracy | Role in Project |
 | :--- | :--- | :--- | :--- |
-| **Linear SVM** | TF-IDF (1,2-gram) + LinearSVC | **90.13%** | Highest accuracy, fast training, robust on text classification |
-| **CNN** | Keras Embedding + Conv1D + GlobalMaxPool | **87.06%** | End-to-end word sequence feature learning |
-
-> **Key Finding:** Linear SVM with TF-IDF unigram+bigram features outperformed 1D CNN by **3.07%**, demonstrating that n-gram frequency features are exceptionally strong baselines for domain-specific text classification.
+| **Linear SVM** | TF-IDF (1,2-gram) + `LinearSVC` | **90.13%** | Primary ML Baseline Model for Member 2 |
+| **CNN** | Keras Embedding + Conv1D + GlobalMaxPool | **87.06%** | Primary DL Model for Member 2 |
 
 ---
 
-## 6. How to Reproduce Member 2 Results
+## Saved Model Artifacts
 
-1. Ensure the dataset `data/processed/arxiv_15000_balanced.csv` is present.
-2. Open the main Jupyter Notebook:
-   ```bash
-   jupyter notebook notebooks/member2_svm_cnn.ipynb
-   ```
-3. Run all cells sequentially. Output models will automatically be saved to `models/`.
+- `models/member2_svm_model.pkl`
+- `models/member2_cnn_model.h5`
+- `models/member2_tokenizer.pkl`
+- `models/member2_label_encoder.pkl`
+
+---
+
+## How to Run Member 2 Notebook
+
+```bash
+# 1. Checkout Member 2 branch
+git checkout feature/member2-eda-svm-cnn
+
+# 2. Run Member 2 Jupyter Notebook
+jupyter notebook notebooks/member2_svm_cnn.ipynb
+```
