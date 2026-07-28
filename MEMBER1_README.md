@@ -1,5 +1,7 @@
 # Member 01 Contribution & Documentation - ResearchScope AI
 
+> 🌐 **Live Web Application Demo:** [https://researchscope-ai.streamlit.app/](https://researchscope-ai.streamlit.app/)
+
 **Student Name:** S.A.Kavindu Oshadha Perera  
 **Student ID:** CIT-24-01-0476 (Member 01)  
 **Branch:** `feature/member1-preprocessing-logistic-lstm`  

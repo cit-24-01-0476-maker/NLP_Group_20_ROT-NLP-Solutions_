@@ -1,5 +1,7 @@
 # ResearchScope AI: Predicting Research Paper Subject Categories Using NLP
 
+> 🌐 **Live Web Application Demo:** [https://researchscope-ai.streamlit.app/](https://researchscope-ai.streamlit.app/)
+
 A Natural Language Processing (NLP) text classification project developed for academic evaluation by **Group 20 (ROT NLP Solutions)**.
 
 ---
@@ -79,24 +81,26 @@ NLP_Group_20_ROT-NLP-Solutions_/
 
 ## 🚀 How to Run the Project Locally
 
-1. **Clone the repository**:
+1. **Live Web App**: Access [https://researchscope-ai.streamlit.app/](https://researchscope-ai.streamlit.app/)
+
+2. **Clone the repository**:
    ```bash
    git clone https://github.com/cit-24-01-0476-maker/NLP_Group_20_ROT-NLP-Solutions_.git
    cd NLP_Group_20_ROT-NLP-Solutions_
    ```
 
-2. **Set up virtual environment**:
+3. **Set up virtual environment**:
    ```bash
    python -m venv .venv
    .venv\Scripts\activate
    ```
 
-3. **Install required dependencies**:
+4. **Install required dependencies**:
    ```bash
    pip install -r requirements.txt
    ```
 
-4. **Launch the Streamlit Web Application**:
+5. **Launch the Streamlit Web Application locally**:
    ```bash
    streamlit run app/app.py
    ```
